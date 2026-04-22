@@ -1,40 +1,58 @@
-# 🎮 Escape from Labyrinth (Labirentten Kaçış) - 8086 Assembly
-8086 Assembly tabanlı, VGA grafik modunda çalışan labirentten kaçış oyunu.
-Bu proje, **Intel 8086/8088 Assembly** dili kullanılarak geliştirilmiş, grafik tabanlı bir labirentten kaçış oyunudur. **Marmara Üniversitesi Mikroişlemci Mimarisi ve Programlama** dersi kapsamında hazırlanmıştır.
+# Labirentten Kacis - 8086 Assembly
 
-## 🚀 Proje Özellikleri
-- **Düşük Seviyeli Mimari:** Saf 8086 Assembly dili ve BIOS/DOS kesmeleri (interrupts) kullanılmıştır.
-- **Grafik Modu:** VGA Video Mode 12h (640x480 çözünürlük) kullanılarak görsel arayüz oluşturulmuştur.
-- **Dinamik Harita:** Haritalar dış dosyalardan (`.txt`) okunur.
-- **Zorluk Seviyeleri:** Ödül sayısına göre değişen 3 farklı zorluk seviyesi mevcuttur (Easy, Medium, Hard).
-- **Skor Sistemi:** En yüksek 5 skoru `scorefl.txt` dosyasında tutan kalıcı bir skor tablosu.
-- **Gerçek Zamanlı Zamanlayıcı:** Oyun sırasında geçen süre ve anlık puan hesaplaması.
+8086 Assembly tabanli, VGA grafik modunda calisan labirentten kacis oyunu.
 
-## 🛠️ Kullanılan Teknolojiler
+Bu proje, **Intel 8086/8088 Assembly** dili kullanilarak gelistirilmis, grafik tabanli bir labirentten kacis oyunudur. **Marmara Universitesi Mikroislemci Mimarisi ve Programlama** dersi kapsaminda hazirlanmistir.
+
+## Proje Ozellikleri
+
+- **Dusuk Seviyeli Mimari:** Saf 8086 Assembly dili ve BIOS/DOS kesmeleri (interrupts) kullanilmistir.
+- **Grafik Modu:** VGA Video Mode 12h (640x480 cozunurluk) kullanilarak gorsel arayuz olusturulmustur.
+- **Dinamik Harita:** Haritalar dis dosyalardan (`.txt`) okunur. Uc farkli harita secenegi mevcuttur.
+- **Zorluk Seviyeleri:** Odul sayisina gore degisen 3 farkli zorluk seviyesi mevcuttur:
+  - **Kolay:** 15 odul
+  - **Orta:** 10 odul
+  - **Zor:** 5 odul
+- **Anlik Skor Gostergesi:** Oyun sirasinda her hamlede guncellenen puan ekranda gosterilir. Her hamle **-5 puan**, her odul **+50 puan** degerindedir.
+- **Gercek Zamanli Zamanlayici:** Oyun sirasinda gecen sure (dakika:saniye) ekranin alt kisminda anlik olarak hesaplanir.
+- **Basitlestirilmis Menu:** Yeni Oyun, Harita Secimi ve Zorluk Seviyesi olmak uzere 3 ana menu secenegi bulunur.
+
+## Kullanilan Teknolojiler
+
 - **Dil:** 8086 Assembly (x86-16)
 - **Derleyici:** emu8086
-- **Emülatör:** DOSBox
-- **Kesmeler:** INT 10H (Video), INT 21H (DOS/Dosya), INT 16H (Klavye)
+- **Emulator:** DOSBox
+- **Kesmeler:**
+  - INT 10h (Video islemleri)
+  - INT 21h (DOS/Dosya islemleri)
+  - INT 16h (Klavye okuma)
+  - INT 15h (Bekleme/Gecikme)
 
-## 🎮 Nasıl Oynanır?
-1. **Hareket:** Klavye üzerindeki **Ok Tuşları** ile karakterinizi (`A`) hareket ettirin.
-2. **Hedef:** Duvarlara (`X`) çarpmadan ödülleri (`U`) toplayın ve çıkışa (`E`) ulaşın.
-3. **Puanlama:** Her ödül **+50 puan**, her hamle **-5 puan** değerindedir.
-4. **Çıkış:** İstediğiniz an **ESC** tuşuna basarak oyunu sonlandırabilirsiniz.
+## Nasil Oynanir?
 
-## 📂 Dosya Yapısı
-- `lab.asm`: Ana kaynak kod dosyası.
-- `map1.txt`, `map2.txt`, `map3.txt`: Oyun haritaları.
-- `scorefl.txt`: Skorların kaydedildiği veri dosyası.
+1. **Hareket:** Klavye uzerindeki **Ok Tuslari** ile karakterinizi (`A`) hareket ettirin.
+2. **Hedef:** Duvarlara (`X`) carpmadan odulleri (`U`) toplayin ve cikisa (`E`) ulasin.
+3. **Puanlama:** Her odul **+50 puan**, her hamle **-5 puan** degerindedir.
+4. **Cikis:** Istediginiz an **ESC** tusuna basarak oyunu sonlandirabilirsiniz.
+5. **Menu:** Oyuna baslamadan once harita ve zorluk seviyesi secimi yapabilirsiniz.
 
-## 🔧 Kurulum ve Çalıştırma
-1. Bu repoyu bilgisayarınıza indirin (clone).
-2. `emu8086` programını açın ve `lab.asm` dosyasını yükleyin.
-3. **Compile** butonuna basarak `.exe` dosyasını oluşturun.
-4. Oluşturulan `.exe` dosyasını `DOSBox` veya `emu8086` emülatörü üzerinden çalıştırın.
-   *(Not: .txt dosyalarının .exe ile aynı klasörde olduğundan emin olun.)*
+## Dosya Yapisi
 
-## 👤 Geliştirici
-- **İsim:** Fatih Kaya
-- **Üniversite:** Marmara Üniversitesi
-- **Bölüm:** Bilgisayar Mühendisliği
+- `lab.asm`: Ana kaynak kod dosyasi.
+- `harita1.txt`, `harita2.txt`, `harita3.txt`: Oyun haritalari (20x22 karakter matrisi).
+- `lab.exe`: Derlenmis calistirilabilir dosya.
+
+## Kurulum ve Calistirma
+
+1. Bu repoyu bilgisayariniza indirin (clone).
+2. `emu8086` programini acin ve `lab.asm` dosyasini yukleyin.
+3. **Compile** butonuna basarak `.exe` dosyasini olusturun.
+4. Olusan `.exe` dosyasini `DOSBox` veya `emu8086` emulatoru uzerinden calistirin.
+
+> **Not:** `harita1.txt`, `harita2.txt` ve `harita3.txt` dosyalarinin `.exe` ile ayni klasorde oldugundan emin olun.
+
+## Gelistirici
+
+- **Isim:** Fatih Kaya
+- **Universite:** Marmara Universitesi
+- **Bolum:** Bilgisayar Muhendisligi
